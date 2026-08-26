@@ -609,11 +609,44 @@ body.menu-open .menu-aside {
   .strategy-grid .sticky-col { position: static; }
 }
 
-/* full-bleed banded image */
-.image-band {
+/* the strategy section sits on the darkened mountain photograph,
+   which drifts slowly against the scroll (JS parallax) */
+.strategy-band {
   position: relative;
-  height: clamp(20rem, 55vh, 34rem);
+  isolation: isolate;
   overflow: hidden;
+  color: var(--cream);
+}
+
+.strategy-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.strategy-media img {
+  position: relative;
+  top: -25%;
+  width: 100%;
+  height: 150%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+.strategy-band::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(rgba(28, 27, 24, 0.66), rgba(28, 27, 24, 0.78));
+}
+
+.strategy-band .lead-line {
+  color: var(--cream);
+}
+
+.strategy-band .lede {
+  color: rgba(244, 242, 236, 0.82);
 }
 
 .image-band img {
@@ -748,21 +781,9 @@ body.menu-open .menu-aside {
   align-content: start;
 }
 
-.person figure {
-  overflow: hidden;
-  aspect-ratio: 4 / 4.6;
-}
-
-.person img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.88);
-  transition: transform 0.8s var(--ease-out);
-}
-
-.person:hover img {
-  transform: scale(1.035);
+.person {
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--hairline);
 }
 
 .person .person-name {
@@ -1089,7 +1110,6 @@ body.menu-open .menu-aside {
   .hero-media img { animation: none; transform: none; }
   .hero { width: 100%; border-radius: 0; transition: none; }
   .hero-scroll-hint::after { animation: none; }
-  .image-band img { height: 100%; top: 0; transform: none !important; }
 }
 
 /* skip link */

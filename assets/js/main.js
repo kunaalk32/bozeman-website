@@ -152,31 +152,30 @@
     updateHero();
   }
 
-  /* ---------- gentle parallax on banded images ---------- */
-  var bands = document.querySelectorAll(".image-band img");
-  if (bands.length && !reducedMotion) {
-    var ticking = false;
-    var updateParallax = function () {
-      bands.forEach(function (img) {
-        var rect = img.parentElement.getBoundingClientRect();
-        var vh = window.innerHeight;
-        if (rect.bottom < 0 || rect.top > vh) return;
-        var progress = (rect.top + rect.height / 2 - vh / 2) / vh;
-        img.style.transform = "translateY(" + progress * -8 + "%)";
-      });
-      ticking = false;
+  /* ---------- parallax drift on the strategy background ---------- */
+  var strategyImg = document.querySelector(".strategy-media img");
+  if (strategyImg && !reducedMotion) {
+    var bandTicking = false;
+    var updateBand = function () {
+      var rect = strategyImg.parentElement.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (rect.bottom > 0 && rect.top < vh) {
+        var progress = (rect.top + rect.height / 2 - vh / 2) / (vh + rect.height);
+        strategyImg.style.transform = "translateY(" + progress * -32 + "%)";
+      }
+      bandTicking = false;
     };
     window.addEventListener(
       "scroll",
       function () {
-        if (!ticking) {
-          ticking = true;
-          requestAnimationFrame(updateParallax);
+        if (!bandTicking) {
+          bandTicking = true;
+          requestAnimationFrame(updateBand);
         }
       },
       { passive: true }
     );
-    updateParallax();
+    updateBand();
   }
 
   /* ---------- contact form (placeholder — ActiveCampaign wiring TBD) ---------- */
