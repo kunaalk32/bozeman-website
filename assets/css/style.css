@@ -157,6 +157,26 @@ a {
   transform: translateX(3px);
 }
 
+.btn-circle.is-closed {
+  color: var(--ink-faint);
+  cursor: default;
+}
+
+.btn-circle.is-closed .disc {
+  background: transparent;
+  border: 1px solid var(--hairline);
+}
+
+.btn-circle.is-closed .disc svg {
+  stroke: var(--ink-faint);
+}
+
+.btn-circle.is-closed:hover .disc,
+.btn-circle.is-closed:hover .disc svg {
+  background: transparent;
+  transform: none;
+}
+
 /* solid pill button (forms) */
 .btn-pill {
   display: inline-block;
@@ -755,6 +775,12 @@ body.menu-open .menu-aside {
 
 .fund-terms dd .highlight {
   color: var(--gold-deep);
+}
+
+.fund-note {
+  margin-top: -1rem;
+  font-size: 0.75rem;
+  color: var(--ink-faint);
 }
 
 .fund-card .btn-circle {
